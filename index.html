@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0F1B3D">
+<title>Fixora : comparez les devis des professionnels de Douala</title>
+<meta name="description" content="Décrivez votre besoin, recevez plusieurs devis de professionnels près de chez vous et choisissez le meilleur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit:#0F1B3D;
+  --chantier:#FFC62B;
+  --beton:#EEF0F4;
+  --encre:#1A2238;
+  --gris:#5A6482;
+  --vert:#17935A;
+  --display:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;
+  --texte:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--texte);color:var(--encre);background:var(--beton);line-height:1.55;font-size:1rem}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+:focus-visible{outline:3px solid var(--chantier);outline-offset:3px}
+
+/* ---------- Haut de page ---------- */
+.hero{background:var(--nuit);color:#fff;padding-bottom:3.5rem}
+.top{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
+.logo{display:flex;gap:.6rem;align-items:center;font-family:var(--display);font-weight:800;font-size:1.45rem;color:#fff;text-decoration:none}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--chantier);color:var(--nuit);display:grid;place-items:center;font-size:1.2rem}
+.pro-link{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:var(--chantier);text-decoration-thickness:3px;text-underline-offset:5px}
+.hero-grid{display:grid;gap:2.2rem;padding-top:1.5rem}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,8.5vw,4.2rem);line-height:1.02;letter-spacing:-.03em}
+.lead{margin-top:1.2rem;color:#C9D1E8;font-size:1.1rem;max-width:36ch}
+.stripes{height:10px;background:repeating-linear-gradient(135deg,var(--chantier) 0 14px,var(--nuit) 14px 28px)}
+
+/* ---------- Démo interactive ---------- */
+.demo{background:#fff;color:var(--encre);border-radius:20px;padding:1.25rem;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.demo h2{font-family:var(--display);font-size:1.4rem;line-height:1.15;letter-spacing:-.01em}
+.field-label{display:block;font-weight:600;margin:1.1rem 0 .5rem;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{font:inherit;font-weight:600;font-size:.95rem;padding:.5rem .9rem;border-radius:999px;border:2px solid #D5D9E3;background:#fff;color:var(--encre);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--chantier);border-color:var(--nuit)}
+.select{width:100%;font:inherit;padding:.8rem;border-radius:10px;border:2px solid #D5D9E3;background:#fff;color:var(--encre)}
+.btn{display:inline-block;width:100%;margin-top:1.2rem;font:inherit;font-weight:700;font-size:1.05rem;padding:.95rem 1.3rem;border-radius:12px;border:0;background:var(--chantier);color:var(--nuit);cursor:pointer;text-align:center;text-decoration:none}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn-line{background:transparent;border:2px solid var(--nuit);margin-top:.8rem;padding:.6rem 1rem;font-size:.95rem}
+
+#results{margin-top:1.2rem}
+.searching{display:flex;align-items:center;gap:.7rem;color:var(--gris);font-weight:600}
+.dots{display:inline-flex;gap:4px}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--chantier);border:1px solid var(--nuit);animation:pulse 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}
+.dots span:nth-child(3){animation-delay:.3s}
+.res-title{font-weight:700}
+.quote{border:2px solid #E3E6EE;border-radius:14px;padding:.9rem;margin-top:.7rem;animation:arrive .5s both;transition:opacity .3s}
+.quote.best{border-color:var(--vert)}
+.quote.dim{opacity:.4}
+.q-head{display:flex;gap:.7rem;align-items:center}
+.avatar{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff}
+.q-name{font-weight:700;line-height:1.2}
+.q-meta{font-size:.85rem;color:var(--gris)}
+.q-price{margin-left:auto;text-align:right;font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.1}
+.q-price small{display:block;font-family:var(--texte);font-weight:500;font-size:.75rem;color:var(--gris)}
+.q-foot{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:.7rem;flex-wrap:wrap}
+.tag{font-size:.82rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;background:var(--beton)}
+.tag.green{background:#DDF3E8;color:#0C6B3F}
+.pick{font:inherit;font-weight:700;font-size:.9rem;padding:.45rem .9rem;border-radius:9px;border:2px solid var(--nuit);background:#fff;color:var(--nuit);cursor:pointer}
+.done{margin-top:1rem;background:#DDF3E8;border-radius:12px;padding:1rem;color:#0C6B3F;font-weight:600}
+.note{margin-top:1rem;font-size:.8rem;color:var(--gris)}
+
+/* ---------- Étapes ---------- */
+.steps-section{padding:4rem 0 3.5rem}
+.steps-section h2,.pro h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,6vw,2.8rem);line-height:1.08;letter-spacing:-.025em}
+.steps{list-style:none;padding:0;margin-top:2.2rem;max-width:620px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;padding-bottom:2rem;position:relative}
+.step:not(:last-child)::before{content:"";position:absolute;left:1.5rem;top:3.2rem;bottom:.2rem;width:2px;background:#C5CBDB}
+.step-num{width:3rem;height:3rem;border-radius:50%;background:var(--nuit);color:var(--chantier);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.3rem}
+.step h3{font-family:var(--display);font-size:1.25rem;line-height:1.2;margin-top:.5rem}
+.step p{color:var(--gris);margin-top:.3rem}
+
+/* ---------- Professionnels ---------- */
+.pro{background:var(--chantier);color:var(--nuit);padding:4rem 0}
+.pro-grid{display:grid;gap:2rem}
+.pro p.intro{margin-top:1rem;font-size:1.1rem;max-width:40ch}
+.calc{background:var(--nuit);color:#fff;border-radius:20px;padding:1.4rem}
+.calc label{font-weight:600}
+.calc output{display:block}
+.calc .big{font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1.1;margin-top:.2rem}
+.calc input[type=range]{width:100%;margin:1rem 0;accent-color:var(--chantier);height:28px}
+.calc .keep{border-top:1px solid #33427A;padding-top:1rem;margin-top:.4rem}
+.calc .keep .big{color:var(--chantier)}
+.calc .fee{color:#C9D1E8;font-size:.9rem;margin-top:.2rem}
+
+footer{background:var(--nuit);color:#C9D1E8;padding:2rem 0 2.5rem;font-size:.9rem}
+footer strong{color:#fff;font-family:var(--display);font-size:1.2rem}
+
+@keyframes arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.1);opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .quote,.dots span{animation:none}
+}
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:1fr 1fr;align-items:start;gap:3.5rem;padding-top:3rem}
+  .pro-grid{grid-template-columns:1fr 1fr;align-items:center;gap:3.5rem}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href="#"><span class="logo-mark">F</span>Fixora</a>
+      <a class="pro-link" href="#pro">Je suis professionnel</a>
+    </header>
+
+    <div class="hero-grid">
+      <div>
+        <h1>Plusieurs devis pour vos travaux, sans courir partout.</h1>
+        <p class="lead">Électricien, plombier, maçon… Décrivez votre besoin à Douala, comparez les prix et choisissez le bon professionnel.</p>
+      </div>
+
+      <div class="demo" id="demo">
+        <h2>Essayez : demandez des devis</h2>
+
+        <span class="field-label" id="lbl-service">De quoi avez-vous besoin ?</span>
+        <div class="chips" id="chips" role="group" aria-labelledby="lbl-service"></div>
+
+        <label class="field-label" for="quartier">Dans quel quartier ?</label>
+        <select class="select" id="quartier">
+          <option>Akwa</option>
+          <option>Bonapriso</option>
+          <option selected>Bonamoussadi</option>
+          <option>Makepe</option>
+          <option>Deido</option>
+          <option>Bonabéri</option>
+          <option>Logpom</option>
+          <option>Ndokotti</option>
+        </select>
+
+        <button class="btn" id="go" type="button">Recevoir des devis</button>
+        <div id="results" aria-live="polite"></div>
+        <p class="note">Démonstration : les noms, prix et avis sont des exemples.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="stripes" aria-hidden="true"></div>
+
+<section class="steps-section">
+  <div class="wrap">
+    <h2>Comment ça marche</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <div>
+          <h3>Décrivez votre besoin</h3>
+          <p>Choisissez le service et votre quartier. Cela prend une minute.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <div>
+          <h3>Comparez les devis</h3>
+          <p>Des professionnels près de chez vous répondent avec un prix, un délai et des avis clients.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <div>
+          <h3>Choisissez votre professionnel</h3>
+          <p>Vous gardez la main : vous acceptez seulement le devis qui vous convient.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="pro" id="pro">
+  <div class="wrap pro-grid">
+    <div>
+      <h2>Vous êtes professionnel ? Les clients viennent à vous.</h2>
+      <p class="intro">L'inscription est gratuite. Fixora prend 10 % uniquement sur les missions terminées. Pas de mission, pas de frais.</p>
+    </div>
+    <div class="calc">
+      <label for="montant">Si votre mission vaut</label>
+      <output class="big" id="montant-out" for="montant">50 000 FCFA</output>
+      <input type="range" id="montant" min="10000" max="500000" step="5000" value="50000">
+      <div class="keep">
+        <span>Vous gardez</span>
+        <output class="big" id="garde-out">45 000 FCFA</output>
+        <p class="fee" id="fee-out">Commission Fixora : 5 000 FCFA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Fixora</strong>
+    <p>Douala, Cameroun. Version de démonstration.</p>
+  </div>
+</footer>
+
+<script>
+const SERVICES = {
+  "Électricité":   {job:"Panne de courant dans une pièce", base:15000},
+  "Plomberie":     {job:"Fuite sous l'évier",              base:12000},
+  "Climatisation": {job:"Entretien d'un split",            base:20000},
+  "Peinture":      {job:"Peinture d'une chambre",          base:60000},
+  "Maçonnerie":    {job:"Réparation d'un mur fissuré",     base:45000},
+  "Menuiserie":    {job:"Réparation d'une porte",          base:18000},
+  "Carrelage":     {job:"Pose de 10 m² de carreaux",       base:50000},
+  "Informatique":  {job:"Ordinateur lent ou en panne",     base:10000},
+  "Nettoyage":     {job:"Nettoyage d'un appartement",      base:25000}
+};
+
+const PROS = [
+  {nom:"Éric N.",   mult:0.85, note:"4,6", avis:38,  delai:"Demain matin",     km:"2,1", couleur:"#0F1B3D", tag:"Meilleur prix", vert:true},
+  {nom:"Aïcha M.",  mult:1.0,  note:"4,9", avis:112, delai:"Aujourd'hui, 16 h", km:"3,4", couleur:"#B5483A", tag:"Mieux noté",   vert:false},
+  {nom:"Samuel T.", mult:1.2,  note:"4,7", avis:64,  delai:"Dans 2 heures",    km:"1,2", couleur:"#2E7D6B", tag:"Le plus rapide", vert:false}
+];
+
+const fmt = n => n.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ') + ' FCFA';
+const $ = id => document.getElementById(id);
+
+let service = "Électricité";
+
+/* Boutons de choix du service */
+const chips = $('chips');
+Object.keys(SERVICES).forEach(nom => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'chip';
+  b.textContent = nom;
+  b.setAttribute('aria-pressed', nom === service);
+  b.addEventListener('click', () => {
+    service = nom;
+    chips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+  });
+  chips.appendChild(b);
+});
+
+/* Recherche de devis */
+const go = $('go'), results = $('results');
+go.addEventListener('click', () => {
+  const quartier = $('quartier').value;
+  go.disabled = true;
+  results.innerHTML = `<p class="searching"><span class="dots"><span></span><span></span><span></span></span>Recherche de professionnels à ${quartier}…</p>`;
+  setTimeout(() => { showQuotes(quartier); go.disabled = false; }, 1300);
+});
+
+function showQuotes(quartier){
+  const s = SERVICES[service];
+  const quotes = PROS
+    .map(p => ({...p, prix: Math.round(s.base * p.mult / 500) * 500}))
+    .sort((a, b) => a.prix - b.prix);
+
+  results.innerHTML =
+    `<p class="res-title">3 devis reçus : ${s.job}, ${quartier}</p>` +
+    quotes.map((q, i) => `
+      <div class="quote ${q.vert ? 'best' : ''}" style="animation-delay:${i * 0.35}s" data-nom="${q.nom}">
+        <div class="q-head">
+          <span class="avatar" style="background:${q.couleur}">${q.nom[0]}</span>
+          <div>
+            <div class="q-name">${q.nom}</div>
+            <div class="q-meta">★ ${q.note} (${q.avis} avis), à ${q.km} km</div>
+          </div>
+          <div class="q-price">${fmt(q.prix)}<small>${q.delai}</small></div>
+        </div>
+        <div class="q-foot">
+          <span class="tag ${q.vert ? 'green' : ''}">${q.tag}</span>
+          <button class="pick" type="button" data-choose="${q.nom}">Choisir ce professionnel</button>
+        </div>
+      </div>`).join('');
+}
+
+/* Choix d'un professionnel */
+results.addEventListener('click', e => {
+  const choose = e.target.closest('[data-choose]');
+  if (choose){
+    const nom = choose.dataset.choose;
+    results.querySelectorAll('.quote').forEach(q => q.classList.toggle('dim', q.dataset.nom !== nom));
+    results.querySelectorAll('.done').forEach(d => d.remove());
+    results.insertAdjacentHTML('beforeend',
+      `<div class="done">Demande envoyée à ${nom}. Il vous contacte très vite pour confirmer.
+       <br><button class="btn btn-line" type="button" data-reset>Faire une autre demande</button></div>`);
+  }
+  if (e.target.closest('[data-reset]')){
+    results.innerHTML = '';
+    document.getElementById('demo').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
+
+/* Calculateur pour les professionnels */
+const range = $('montant');
+function calc(){
+  const m = Number(range.value);
+  const commission = Math.round(m * 0.10);
+  $('montant-out').textContent = fmt(m);
+  $('garde-out').textContent = fmt(m - commission);
+  $('fee-out').textContent = 'Commission Fixora : ' + fmt(commission);
+}
+range.addEventListener('input', calc);
+calc();
+</script>
+</body>
+</html>
